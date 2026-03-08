@@ -67,6 +67,19 @@ body.red-alert .cursor-dot { background-color: var(--cyber-red); box-shadow: 0 0
 body.red-alert .cursor-outline { border-color: var(--cyber-red); }
 body.red-alert .vignette { background: radial-gradient(circle, transparent 50%, rgba(50, 0, 0, 0.85) 150%); }
 
+/* === EXTREME GLITCH HOVER === */
+.profile-frame:hover {
+    animation: extremeGlitch 0.2s linear infinite;
+}
+@keyframes extremeGlitch {
+    0% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
+    20% { transform: translate(-5px, 2px) skew(-10deg); filter: hue-rotate(90deg); }
+    40% { transform: translate(5px, -2px) skew(10deg); filter: hue-rotate(-90deg); }
+    60% { transform: translate(-2px, 5px) skew(0deg); filter: hue-rotate(45deg); }
+    80% { transform: translate(2px, -5px) skew(5deg); filter: hue-rotate(-45deg); }
+    100% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
+}
+
 /* Reset & Base */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -434,24 +447,9 @@ body {
 ::-webkit-scrollbar-thumb { background: rgba(8,247,254,0.3); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--cyber-cyan); }
 
-/* === 3D CUBE EASTER EGG === */
-.scene { width: 200px; height: 200px; perspective: 600px; margin: 3rem auto; }
-.cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: spinCube 12s infinite linear; }
-.cube__face {
-    position: absolute; width: 200px; height: 200px;
-    border: 2px solid var(--cyber-cyan);
-    background: rgba(8, 247, 254, 0.1);
-    box-shadow: inset 0 0 20px rgba(8, 247, 254, 0.4);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem; font-family: var(--font-mono); color: var(--text-primary); text-shadow: 0 0 10px var(--cyber-cyan);
-}
-.cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
-.cube__face--right  { transform: rotateY( 90deg) translateZ(100px); }
-.cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
-.cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
-.cube__face--top    { transform: rotateX( 90deg) translateZ(100px); }
-.cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
-@keyframes spinCube { 0% { transform: translateZ(-100px) rotateX(0deg) rotateY(0deg); } 100% { transform: translateZ(-100px) rotateX(360deg) rotateY(360deg); } }
+/* === INTERACTIVE HEXAGON (HOLO CORE REPLACEMENT) === */
+.hex-scene { width: 100%; height: 350px; display: flex; align-items: center; justify-content: center; perspective: 800px; margin: 0 auto; overflow: hidden; background: #000; position:relative; }
+#holo-canvas { width:100%; height:100%; position:absolute; top:0; left:0; z-index:1; mix-blend-mode: screen; }
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
@@ -594,7 +592,7 @@ body {
                         <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5"/><path d="M12 12v9"/><path d="M12 12L4 7.5"/></svg>
                     </div>
                     <h2 class="module-title">[ HOLO_CORE ]</h2>
-                    <p class="module-sub">3D Visualization Engine</p>
+                    <p class="module-sub">3D Interactive Scene</p>
                 </div>
             </div>
 
@@ -1078,27 +1076,20 @@ Type 'help' for available commands.
             </div>
         </div>
 
-        <!-- HOLOGRAM WINDOW (3D CUBE) -->
-        <div class="os-window hidden" id="win-hologram" style="width: 500px; background: rgba(2, 6, 23, 0.9);">
+        <!-- HOLOGRAM WINDOW (CSS HEX) -->
+        <div class="os-window hidden" id="win-hologram" style="width: 600px; max-width: 95vw; background: rgba(2, 6, 23, 0.9);">
             <div class="os-window-header" data-draghandle="win-hologram">
-                <div class="os-title">render_target_schema.exe</div>
+                <div class="os-title">render_target_scene.exe</div>
                 <div class="os-close" onclick="closeWindow('win-hologram')">X</div>
             </div>
-            <div class="os-window-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <p style="font-family: var(--font-mono); color: var(--text-dim); font-size: 0.9rem; margin-bottom: 2rem;">&gt; INITIALIZING 3D CSS RENDER PIPELINE...</p>
+            <div class="os-window-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem;">
+                <p style="font-family: var(--font-mono); color: var(--text-dim); font-size: 0.9rem; margin-bottom: 1rem; width:100%; text-align:left;">&gt; INITIALIZING GL_CANVAS ENGINE...</p>
                 
-                <div class="scene">
-                  <div class="cube">
-                    <div class="cube__face cube__face--front">WEB3</div>
-                    <div class="cube__face cube__face--back">HTML5</div>
-                    <div class="cube__face cube__face--right">EVM</div>
-                    <div class="cube__face cube__face--left">CSS3</div>
-                    <div class="cube__face cube__face--top">HEDERA</div>
-                    <div class="cube__face cube__face--bottom">SOL</div>
-                  </div>
+                <div class="hex-scene" id="hex-scene">
+                    <canvas id="holo-canvas"></canvas>
                 </div>
 
-                <p style="font-family: var(--font-mono); color: var(--cyber-cyan); font-size: 0.8rem; margin-top: 2rem; animation: pulse 2s infinite;">&gt; MESH RENDER SUCCESSFUL</p>
+                <p style="font-family: var(--font-mono); color: var(--cyber-cyan); font-size: 0.8rem; margin-top: 1rem; animation: pulse 2s infinite; width:100%; text-align:right;">&gt; REALTIME TOPOLOGY // DRAG TO ROTATE</p>
             </div>
         </div>
 
@@ -1241,7 +1232,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (text.startsWith("[!]")) p.classList.add("boot-error");
             p.textContent = text;
             bootContainer.appendChild(p);
-            playSound('type'); // Play typing sound
+            playSound('type');
             lineIndex++;
             setTimeout(printBootLine, Math.random() * 150 + 50); // Faster for GUI
         } else {
@@ -1383,8 +1374,40 @@ document.addEventListener("DOMContentLoaded", () => {
         initDraggableWindows();
     }
 
+    // --- 3.5 HACKER DECRYPT EFFECT ---
+    function scrambleText(element) {
+        const originalText = element.getAttribute('data-original') || element.textContent;
+        element.setAttribute('data-original', originalText);
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        let iterations = 0;
+        
+        const interval = setInterval(() => {
+            element.textContent = originalText.split('').map((char, index) => {
+                if (index < iterations || char === ' ') return originalText[index];
+                return chars[Math.floor(Math.random() * chars.length)];
+            }).join('');
+            
+            if (iterations >= originalText.length) {
+                clearInterval(interval);
+                element.textContent = originalText;
+            }
+            iterations += 1/2;
+        }, 30);
+    }
+
     // --- 4. WINDOW MANAGEMENT LOGIC ---
     let zIndexCounter = 100;
+
+    // Snapping ghost overlay (for Windows-style aero snap)
+    const snapGhost = document.createElement('div');
+    snapGhost.style.position = 'fixed';
+    snapGhost.style.background = 'rgba(8, 247, 254, 0.1)';
+    snapGhost.style.border = '2px dashed var(--cyber-cyan)';
+    snapGhost.style.pointerEvents = 'none';
+    snapGhost.style.zIndex = '90';
+    snapGhost.style.transition = 'all 0.15s ease';
+    snapGhost.style.opacity = '0';
+    document.body.appendChild(snapGhost);
 
     // We expose openWindow to global scope for the inline onclick handler
     window.openWindow = function(id) {
@@ -1395,6 +1418,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (win.classList.contains("hidden")) {
             win.classList.remove("hidden");
             playSound('open');
+
+            const targets = win.querySelectorAll('h2, h3, .os-title');
+            targets.forEach(t => scrambleText(t));
             
             // Random offset so windows don't perfectly stack
             const offsetX = (Math.random() - 0.5) * 50;
@@ -1412,10 +1438,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 100);
             }
         }
-        
         // Bring to front
         zIndexCounter++;
         win.style.zIndex = zIndexCounter;
+
+        // Initialize Globe
+        if (id === 'win-hologram' && !window.globeInitialized) {
+            initGlobeInteraction();
+            window.globeInitialized = true;
+        }
     };
 
     window.closeWindow = function(id) {
@@ -1451,6 +1482,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const header = win.querySelector(".os-window-header");
             let isDragging = false;
             let startX, startY, initialX, initialY;
+            let currentSnap = null; // 'left', 'right', 'top', null
 
             // Click anywhere on window brings to front
             win.addEventListener("mousedown", () => {
@@ -1461,9 +1493,14 @@ document.addEventListener("DOMContentLoaded", () => {
             header.addEventListener("mousedown", dragStart);
 
             function dragStart(e) {
-                // Don't drag if clicking close button
                 if(e.target.classList.contains('os-close')) return;
                 
+                // If snapped, unsnap on drag
+                if (win.dataset.snapped) {
+                    gsap.set(win, { width: win.dataset.origWidth, height: win.dataset.origHeight });
+                    delete win.dataset.snapped;
+                }
+
                 const computed = window.getComputedStyle(win);
                 const transform = new DOMMatrix(computed.transform);
                 initialX = transform.m41;
@@ -1488,19 +1525,69 @@ document.addEventListener("DOMContentLoaded", () => {
                     x: initialX + dx,
                     y: initialY + dy
                 });
+
+                // Check OS window snapping thresholds (within 20px of edge)
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+                currentSnap = null;
+
+                if (e.clientX < 20) {
+                    currentSnap = 'left';
+                    snapGhost.style.opacity = '1';
+                    snapGhost.style.top = '0'; snapGhost.style.left = '0';
+                    snapGhost.style.width = '50vw'; snapGhost.style.height = '100vh';
+                } else if (e.clientX > vw - 20) {
+                    currentSnap = 'right';
+                    snapGhost.style.opacity = '1';
+                    snapGhost.style.top = '0'; snapGhost.style.left = '50vw';
+                    snapGhost.style.width = '50vw'; snapGhost.style.height = '100vh';
+                } else if (e.clientY < 20) {
+                    currentSnap = 'top';
+                    snapGhost.style.opacity = '1';
+                    snapGhost.style.top = '0'; snapGhost.style.left = '0';
+                    snapGhost.style.width = '100vw'; snapGhost.style.height = '100vh';
+                } else {
+                    snapGhost.style.opacity = '0';
+                }
             }
 
-            function dragEnd() {
+            function dragEnd(e) {
                 isDragging = false;
                 document.removeEventListener("mousemove", drag);
                 document.removeEventListener("mouseup", dragEnd);
+
+                snapGhost.style.opacity = '0';
+
+                if (currentSnap) {
+                    // Store original dimensions if not already stored
+                    if (!win.dataset.origWidth) {
+                        win.dataset.origWidth = win.style.width || window.getComputedStyle(win).width;
+                        win.dataset.origHeight = win.style.height || window.getComputedStyle(win).height;
+                    }
+
+                    win.dataset.snapped = currentSnap;
+                    const vw = window.innerWidth;
+                    const vh = window.innerHeight;
+
+                    if (currentSnap === 'left') {
+                        gsap.to(win, { x: -vw/2 + vw/4, y: 0, width: '50vw', height: '100vh', duration: 0.3, ease: 'power2.out' });
+                    } else if (currentSnap === 'right') {
+                        gsap.to(win, { x: vw/2 - vw/4, y: 0, width: '50vw', height: '100vh', duration: 0.3, ease: 'power2.out' });
+                    } else if (currentSnap === 'top') {
+                        gsap.to(win, { x: 0, y: 0, width: '100vw', height: '100vh', duration: 0.3, ease: 'power2.out' });
+                    }
+                    playSound('blip');
+                }
             }
         });
     }
 
-    // --- 4.5 TERMINAL LOGIC ---
+    // --- 4.5 TERMINAL LOGIC & HACK MINIGAME ---
     const termInput = document.getElementById('terminal-input');
     const termOutput = document.getElementById('terminal-output');
+    
+    let hackingActive = false;
+    let targetHash = "";
 
     if (termInput && termOutput) {
         termInput.addEventListener('keydown', function(e) {
@@ -1512,17 +1599,48 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Echo command
                 termOutput.textContent += `\nroot@sks.os:~$ ${cmd}\n`;
                 
-                // Process command
+                // Hacking Minigame Input Handler
+                if (hackingActive) {
+                    if (cmd === targetHash) {
+                        playSound('granted');
+                        termOutput.innerHTML += `<span style="color:var(--cyber-cyan);">[+] DECRYPTION SUCCESSFUL. KEY ACCEPTED.</span>\n`;
+                        termOutput.innerHTML += `<span style="color:var(--cyber-green);">[+] ACCESS GRANTED TO SECTOR 7G.</span>\n`;
+                        termOutput.innerHTML += `<span style="color:var(--cyber-yellow);">[!] Easter Egg Unlocked: Decentralization is the future. Keep building.</span>\n`;
+                        hackingActive = false;
+                    } else if (cmd === 'exit') {
+                        termOutput.textContent += '[-] HACK ABORTED.\n';
+                        hackingActive = false;
+                    } else {
+                        playSound('alarm');
+                        termOutput.innerHTML += `<span style="color:var(--cyber-red);">[-] INVALID HASH. ACCESS DENIED. (Type 'exit' to abort)</span>\n`;
+                    }
+                    scrollToBottom();
+                    return;
+                }
+
+                // Normal Process command
                 if (cmd === 'help') {
-                    termOutput.textContent += `Available commands:\n  help      - Show this message\n  clear     - Clear terminal output\n  whoami    - Display current user info\n  projects  - List active missions\n  contact   - Retrieve communication links\n  sudo      - Execute a command as superuser\n`;
+                    termOutput.textContent += `Available commands:\n  help      - Show this message\n  clear     - Clear terminal output\n  whoami    - Display current user info\n  projects  - List active missions\n  contact   - Retrieve communication links\n  hack      - [ENCRYPTED SUBROUTINE]\n  sudo      - Execute a command as superuser\n`;
                 } else if (cmd === 'clear') {
-                    termOutput.textContent = `SKS OS v4.0.01 (tty1)\n\nWelcome to the internal system shell.\nType 'help' for available commands.\n`;
+                    termOutput.innerHTML = `SKS OS v4.0.01 (tty1)\n\nWelcome to the internal system shell.\nType 'help' for available commands.\n`;
                 } else if (cmd === 'whoami') {
                     termOutput.textContent += `SAURABH KUMAR SINGH\nBlockchain Developer currently stationed in IND.\nSpecialties: EVM, Hedera, Solidity, Security.\nType 'projects' to see ongoing work.\n`;
                 } else if (cmd === 'projects') {
                     termOutput.textContent += `[ACTIVE] Crypto Portfolio Tracker (Hedera HTS)\n[DEV] DeFi Smart Contract Suite (Solidity/Hardhat)\n[BUILDING] Automated Recon Scanner (Python)\n\nUse the GUI [MISSION_ARCHIVES] for secure links.\n`;
                 } else if (cmd === 'contact') {
                     termOutput.textContent += `Email: rsaurabhsingh84@gmail.com\nLinkedIn: linkedin.com/in/saurabhsingh98\nGitHub: github.com/saurabhsingh-98\n`;
+                } else if (cmd === 'hack') {
+                    // Start hacking minigame
+                    hackingActive = true;
+                    targetHash = Math.random().toString(36).substring(2, 8).toUpperCase();
+                    termOutput.innerHTML += `<span style="color:var(--cyber-cyan);">[+] INITIATING BRUTE_FORCE PROTOCOL...</span>\n`;
+                    playSound('alarm');
+                    setTimeout(() => {
+                        termOutput.innerHTML += `<span style="color:var(--cyber-yellow);">[!] TARGET MAINFRAME ENCRYPTED. MATCH THE FOLLOWING HASH EXACTLY:</span>\n`;
+                        termOutput.innerHTML += `<span style="color:#fff; background:var(--cyber-red); padding: 0 5px; font-weight:bold; letter-spacing:0.2em;">${targetHash}</span>\n`;
+                        termOutput.textContent += `Time is running out. Input hash: \n`;
+                        scrollToBottom();
+                    }, 1000);
                 } else if (cmd === 'sudo override') {
                     termOutput.innerHTML += `<span style="color:var(--cyber-red);">[!] WARNING: SUPERUSER PROTOCOL ACTIVATED</span>\n<span style="color:var(--cyber-red);">[!] INITIATING SYSTEM COLOR INVERSION...</span>\n`;
                     playSound('alarm');
@@ -1536,12 +1654,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     termOutput.textContent += `bash: ${cmd}: command not found\n`;
                 }
                 
-                // Auto scroll to bottom
-                const termContent = document.getElementById('terminal-content');
-                termContent.scrollTop = termContent.scrollHeight;
+                scrollToBottom();
             }
         });
         
+        function scrollToBottom() {
+            const termContent = document.getElementById('terminal-content');
+            termContent.scrollTop = termContent.scrollHeight;
+        }
+
         // Click anywhere on terminal windows focuses input
         document.getElementById('win-terminal').addEventListener('click', () => {
             termInput.focus();
@@ -1626,57 +1747,214 @@ document.addEventListener("DOMContentLoaded", () => {
     
     initCloudMonitor();
 
-    // --- MATRIX RAIN BACKGROUND ---
+    // --- 6. KONAMI CODE / GOD MODE ---
+    const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let konamiIndex = 0;
+    document.addEventListener('keydown', (e) => {
+        if (e.key === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            if (konamiIndex === konamiCode.length) {
+                playSound('alarm');
+                setTimeout(() => playSound('alarm'), 400);
+                document.body.classList.toggle('red-alert');
+                window.dispatchEvent(new CustomEvent('theme-override'));
+                
+                const termOutput = document.getElementById('terminal-output');
+                if(termOutput) {
+                     termOutput.innerHTML += `<span style="color:var(--cyber-red);">[!] GOD MODE UNLOCKED via KONAMI CODE.</span>\n`;
+                }
+                konamiIndex = 0;
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+
+    // --- 7. GLOBE / HOLO CORE CANVAS ---
+    function initGlobeInteraction() {
+        const canvas = document.getElementById('holo-canvas');
+        if(!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const parent = canvas.parentElement;
+        canvas.width = parent.clientWidth;
+        canvas.height = parent.clientHeight;
+        
+        let nodes = [];
+        const radius = Math.min(canvas.width, canvas.height) * 0.35;
+        const rings = 14;
+        const segments = 18;
+        
+        // Generate sphere nodes
+        for(let i=0; i<=rings; i++) {
+            let v = i/rings;
+            let phi = v * Math.PI;
+            for(let j=0; j<=segments; j++) {
+                let u = j/segments;
+                let theta = u * Math.PI * 2;
+                let x = radius * Math.sin(phi) * Math.cos(theta);
+                let y = radius * Math.cos(phi);
+                let z = radius * Math.sin(phi) * Math.sin(theta);
+                nodes.push({x, y, z});
+            }
+        }
+        
+        let rotX = 0, rotY = 0;
+        let mouseX = 0, mouseY = 0;
+        let isDragging = false;
+        
+        canvas.addEventListener('mousedown', () => isDragging = true);
+        window.addEventListener('mouseup', () => isDragging = false);
+        canvas.addEventListener('mousemove', e => {
+            const rect = canvas.getBoundingClientRect();
+            let normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            let normY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+            if(isDragging) {
+                mouseX = normX * 0.1;
+                mouseY = normY * 0.1;
+            } else {
+                mouseX += (normX * 0.02 - mouseX) * 0.1;
+                mouseY += (normY * 0.02 - mouseY) * 0.1;
+            }
+        });
+        canvas.addEventListener('mouseleave', () => { mouseX=0; mouseY=0; isDragging=false; });
+        
+        function drawGlobe() {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            
+            rotY += mouseX || 0.005;
+            rotX -= mouseY || 0.002;
+            
+            let cx = canvas.width/2;
+            let cy = canvas.height/2;
+            
+            const isRed = document.body.classList.contains('red-alert');
+            const primaryColor = isRed ? 'rgba(255, 42, 42, 1)' : 'rgba(8, 247, 254, 1)';
+            const paleColor = isRed ? 'rgba(255, 42, 42, 0.2)' : 'rgba(8, 247, 254, 0.2)';
+            
+            let projected = [];
+            
+            // Rotate and project
+            for(let i=0; i<nodes.length; i++) {
+                let n = nodes[i];
+                // Rotate Y
+                let x1 = n.x * Math.cos(rotY) - n.z * Math.sin(rotY);
+                let z1 = n.z * Math.cos(rotY) + n.x * Math.sin(rotY);
+                // Rotate X
+                let y2 = n.y * Math.cos(rotX) - z1 * Math.sin(rotX);
+                let z2 = z1 * Math.cos(rotX) + n.y * Math.sin(rotX);
+                
+                let scale = 300 / (300 + z2);
+                let px = cx + x1 * scale;
+                let py = cy + y2 * scale;
+                
+                projected.push({x: px, y: py, z: z2, scale: scale});
+            }
+            
+            // Draw lines between nodes
+            ctx.lineWidth = 1;
+            for(let i=0; i<projected.length; i++) {
+                let p1 = projected[i];
+                if(p1.z > 50) continue; // backface culling roughly
+                
+                ctx.beginPath();
+                ctx.fillStyle = primaryColor;
+                ctx.arc(p1.x, p1.y, 1.5 * p1.scale, 0, Math.PI*2);
+                ctx.fill();
+                
+                ctx.strokeStyle = paleColor;
+                // Connect to next in segment
+                if (i + 1 < projected.length && (i+1) % (segments+1) !== 0) {
+                    ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(projected[i+1].x, projected[i+1].y); ctx.stroke();
+                }
+                // Connect to next ring
+                if (i + segments + 1 < projected.length) {
+                    ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(projected[i+segments+1].x, projected[i+segments+1].y); ctx.stroke();
+                }
+            }
+            requestAnimationFrame(drawGlobe);
+        }
+        drawGlobe();
+    }
+
+    // --- 8. INTERACTIVE WARP SPEED BACKGROUND ---
     (function() {
         const canvas = document.getElementById('matrix-canvas');
+        canvas.style.opacity = '1'; 
         const ctx = canvas.getContext('2d');
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ&#x2694;&#x2605;ABCDEFabcdef0123456789<>{}[]|=/\\!@#%^&*';
-        const charArr = Array.from('01アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFabcdef0123456789<>{}[]|=/\\!@#^&*01101110100110');
-        const fontSize = 14;
-        let cols, drops;
-
+        
+        let width, height;
         function resize() {
-            canvas.width  = window.innerWidth;
-            canvas.height = window.innerHeight;
-            cols  = Math.floor(canvas.width / fontSize);
-            drops = Array(cols).fill(1);
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
         resize();
         window.addEventListener('resize', resize);
 
-        // Colour palette: alternate cyan / green / white
-        let palette = ['#08f7fe', '#00ff9c', '#63b3ed', '#00ff9c', '#08f7fe', '#aaffdd'];
-
-        // Listen for Red Alert mode theme override
-        window.addEventListener('theme-override', () => {
-            if (document.body.classList.contains('red-alert')) {
-                palette = ['#ff2a2a', '#ff6a00', '#facc15', '#ff2a2a', '#ff4d4d', '#ffaa00'];
-            } else {
-                palette = ['#08f7fe', '#00ff9c', '#63b3ed', '#00ff9c', '#08f7fe', '#aaffdd'];
-            }
-        });
-
-        function draw() {
-            // Semi-transparent black overlay for trail effect
-            ctx.fillStyle = 'rgba(2, 6, 18, 0.18)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = charArr[Math.floor(Math.random() * charArr.length)];
-                const color = palette[Math.floor(Math.random() * palette.length)];
-                ctx.fillStyle = color;
-                ctx.font = fontSize + 'px "Share Tech Mono", monospace';
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                // Random reset after reaching bottom, or randomly
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
+        const stars = [];
+        const numStars = window.innerWidth < 768 ? 200 : 400; // responsive count
+        
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * 2 - 1,
+                y: Math.random() * 2 - 1,
+                z: Math.random()
+            });
         }
 
-        setInterval(draw, 50);
+        let mouseX = 0;
+        let mouseY = 0;
+        window.addEventListener('mousemove', e => {
+            mouseX = (e.clientX - width / 2) / (width / 2);
+            mouseY = (e.clientY - height / 2) / (height / 2);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.fillStyle = 'rgba(2, 6, 23, 0.4)'; // trail effect
+            ctx.fillRect(0, 0, width, height);
+            
+            ctx.translate(width / 2, height / 2);
+            
+            const isRed = document.body.classList.contains('red-alert');
+            const color = isRed ? {r:255, g:42, b:42} : {r:8, g:247, b:254};
+            const speed = 0.003 + (Math.abs(mouseX) + Math.abs(mouseY)) * 0.005; // speed up based on mouse distance
+            
+            for (let i = 0; i < stars.length; i++) {
+                let s = stars[i];
+                let pz = s.z;
+                s.z -= speed;
+                
+                if (s.z <= 0) {
+                    s.x = Math.random() * 2 - 1;
+                    s.y = Math.random() * 2 - 1;
+                    s.z = 1;
+                    pz = 1;
+                }
+                
+                // Project current 3D pos
+                let offsetX = mouseX * 200 * (1 - s.z);
+                let offsetY = mouseY * 200 * (1 - s.z);
+                let sx = (s.x / s.z) * (width / 2) + offsetX;
+                let sy = (s.y / s.z) * (height / 2) + offsetY;
+                
+                // Project previous 3D pos for trailing line
+                let pOffsetX = mouseX * 200 * (1 - pz);
+                let pOffsetY = mouseY * 200 * (1 - pz);
+                let psx = (s.x / pz) * (width / 2) + pOffsetX;
+                let psy = (s.y / pz) * (height / 2) + pOffsetY;
+                
+                // Draw line
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${1 - s.z})`;
+                ctx.lineWidth = 1.5 * (1 - s.z);
+                ctx.moveTo(psx, psy);
+                ctx.lineTo(sx, sy);
+                ctx.stroke();
+            }
+            
+            ctx.translate(-width / 2, -height / 2);
+        }
+        animate();
     })();
 
 });
