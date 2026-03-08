@@ -605,11 +605,11 @@ body {
             <!-- Identity Block -->
             <div class="monitor-row">
                 <span class="monitor-label">IDENTITY</span>
-                <span class="monitor-value">SAURABH KUMAR SINGH</span>
+                <span class="monitor-value">S.K. SINGH</span>
             </div>
             <div class="monitor-row">
                 <span class="monitor-label">ROLE</span>
-                <span class="monitor-value" style="font-size:0.68rem; color: var(--text-dim);">Blockchain Dev</span>
+                <span class="monitor-value" style="font-size:0.68rem; color: var(--text-dim);">Blockchain Dev / Bug Hunter</span>
             </div>
             <div class="monitor-row">
                 <span class="monitor-label">STATUS</span>
@@ -783,24 +783,44 @@ body {
                 </a>
 
                 <!-- Project 03 -->
-                <div class="mission-card mb-4" style="display:flex; gap:1.5rem; align-items:flex-start; border-color: rgba(250,204,21,0.3);" data-magnetic>
-                    <div style="font-family: var(--font-mono); font-size: 2rem; color: rgba(250,204,21,0.2); flex-shrink:0; line-height:1;">03</div>
+                <a href="#" target="_blank" class="mission-card mb-4" style="display:flex; gap:1.5rem; align-items:flex-start; border-color: rgba(8,247,254,0.3);" data-magnetic>
+                    <div style="font-family: var(--font-mono); font-size: 2rem; color: rgba(8,247,254,0.2); flex-shrink:0; line-height:1;">03</div>
                     <div style="flex:1;">
-                        <div class="mission-status" style="color: #facc15;">STATUS: CONCEPTUAL PHASE</div>
-                        <h3>Automated Recon & Vulnerability Scanner</h3>
-                        <p>A custom Python utility for automating initial reconnaissance on HackerOne targets — subdomain enumeration, endpoint discovery, and vulnerability fingerprinting.</p>
+                        <div class="mission-status blink" style="color: var(--cyber-cyan);">LIVE_NODE</div>
+                        <h3>ZK-Anon Identity Matrix</h3>
+                        <p>Zero-knowledge proof authentication system utilizing zk-SNARKs and Circom to verify credentials on-chain without exposing underlying private data.</p>
                         <div class="tech-tags" style="margin-top:0.8rem;">
-                            <span class="tag alert">Python</span>
-                            <span class="tag alert">Cybersecurity</span>
-                            <span class="tag">OSINT</span>
-                            <span class="tag">Automation</span>
+                            <span class="tag">Solidity</span>
+                            <span class="tag">Circom</span>
+                            <span class="tag alert">Rust</span>
+                            <span class="tag">zk-SNARKs</span>
                         </div>
                         <div class="mission-footer" style="margin-top:0.8rem;">
-                            <span class="tech-stack" style="color:#666;">[ Security / Python ]</span>
-                            <span class="highlight" style="color:#666;">BUILDING ⏳</span>
+                            <span class="tech-stack">[ Cryptography / Web3 ]</span>
+                            <span class="highlight">SECURE_LINK ↗</span>
                         </div>
                     </div>
-                </div>
+                </a>
+
+                <!-- Project 04 -->
+                <a href="#" target="_blank" class="mission-card mb-4" style="display:flex; gap:1.5rem; align-items:flex-start; border-color: rgba(8,247,254,0.3);" data-magnetic>
+                    <div style="font-family: var(--font-mono); font-size: 2rem; color: rgba(8,247,254,0.2); flex-shrink:0; line-height:1;">04</div>
+                    <div style="flex:1;">
+                        <div class="mission-status blink" style="color: var(--cyber-cyan);">LIVE_NODE</div>
+                        <h3>Rusty-Rollup Sequencer</h3>
+                        <p>High-throughput optimistic rollup sequencer written in Rust. Features a custom Merkle state transition engine and a deterministic P2P gossip protocol.</p>
+                        <div class="tech-tags" style="margin-top:0.8rem;">
+                            <span class="tag alert">Rust</span>
+                            <span class="tag">Tokio</span>
+                            <span class="tag alert">WebAssembly</span>
+                            <span class="tag">p2p</span>
+                        </div>
+                        <div class="mission-footer" style="margin-top:0.8rem;">
+                            <span class="tech-stack">[ Systems / Scaling ]</span>
+                            <span class="highlight">SECURE_LINK ↗</span>
+                        </div>
+                    </div>
+                </a>
 
             </div>
         </div>
@@ -1380,7 +1400,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function scrambleText(element) {
         const originalText = element.getAttribute('data-original') || element.textContent;
         element.setAttribute('data-original', originalText);
-        const chars = 'NOPQRSTUEJBFSINEZ0123456789@#$%^&*()';
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
         let iterations = 0;
         
         const interval = setInterval(() => {
@@ -1628,7 +1648,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (cmd === 'whoami') {
                     termOutput.textContent += `SAURABH KUMAR SINGH\nBlockchain Developer currently stationed in IND.\nSpecialties: EVM, Hedera, Solidity, Security.\nType 'projects' to see ongoing work.\n`;
                 } else if (cmd === 'projects') {
-                    termOutput.textContent += `[ACTIVE] Crypto Portfolio Tracker (Hedera HTS)\n[DEV] DeFi Smart Contract Suite (Solidity/Hardhat)\n[BUILDING] Automated Recon Scanner (Python)\n\nUse the GUI [MISSION_ARCHIVES] for secure links.\n`;
+                    termOutput.textContent += `[ACTIVE] Crypto Portfolio Tracker (Python)\n[ACTIVE] Hedera Visualizer (JS/WebSocket)\n[ACTIVE] ZK-Anon Identity Matrix (Rust/Circom)\n[ACTIVE] Rusty-Rollup Sequencer (Rust/Tokio)\n\nUse the GUI [MISSION_ARCHIVES] for secure links.\n`;
                 } else if (cmd === 'contact') {
                     termOutput.textContent += `Email: rsaurabhsingh84@gmail.com\nLinkedIn: linkedin.com/in/saurabh-singh-381a65383\nGitHub: github.com/saurabhsingh-98\n`;
                 } else if (cmd === 'hack') {
@@ -1772,7 +1792,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- 7. EPIC QUANTUM CORE CANVAS ---
+    // --- 7. MINIMAL HIGH-TECH HOLO CORE ---
     function initGlobeInteraction() {
         const canvas = document.getElementById('holo-canvas');
         if(!canvas) return;
@@ -1781,118 +1801,252 @@ document.addEventListener("DOMContentLoaded", () => {
         canvas.width = parent.clientWidth;
         canvas.height = parent.clientHeight;
         
-        let particles = [];
         let time = 0;
-        const numParticles = 300;
-        
-        for (let i = 0; i < numParticles; i++) {
-            particles.push({
-                angle: Math.random() * Math.PI * 2,
-                radius: Math.random() * 150 + 20,
-                speed: Math.random() * 0.05 + 0.01,
-                z: Math.random() * 200 - 100,
-                size: Math.random() * 2 + 0.5
-            });
-        }
-        
-        let mouseX = 0, mouseY = 0;
+        let mouseX = 0, mouseY = 0; // Current smooth rotation
+        let targetRotX = 0, targetRotY = 0; // Target rotation from dragging
         let isDragging = false;
+        let lastX = 0, lastY = 0;
         
-        canvas.addEventListener('mousedown', () => isDragging = true);
-        window.addEventListener('mouseup', () => isDragging = false);
-        canvas.addEventListener('mousemove', e => {
-            const rect = canvas.getBoundingClientRect();
-            let normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-            let normY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+        canvas.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            document.body.style.cursor = 'grabbing';
+            e.preventDefault();
+        });
+        
+        window.addEventListener('mouseup', () => { 
             if(isDragging) {
-                mouseX += normX * 0.1;
-                mouseY += normY * 0.1;
-            } else {
-                mouseX += (normX * 0.5 - mouseX) * 0.05;
-                mouseY += (normY * 0.5 - mouseY) * 0.05;
+                isDragging = false;
+                document.body.style.cursor = 'default';
             }
         });
-        canvas.addEventListener('mouseleave', () => { isDragging=false; });
         
-        function drawEpicCore() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'; // trailing effect
+        canvas.addEventListener('mousemove', e => {
+            if(isDragging) {
+                const deltaX = e.clientX - lastX;
+                const deltaY = e.clientY - lastY;
+                
+                // Adjust sensitivity
+                targetRotY += deltaX * 0.01;
+                targetRotX += deltaY * 0.01;
+                
+                // Clamp X rotation to prevent flipping entirely over if desired, 
+                // but for a true 3D object, free rotation is best.
+                
+                lastX = e.clientX;
+                lastY = e.clientY;
+            }
+        });
+        
+        canvas.addEventListener('mouseleave', () => { 
+            if(isDragging) {
+                isDragging=false; 
+                document.body.style.cursor = 'default';
+            }
+        });
+
+        // Generate Torus Knot Geometry
+        const segments = 150;
+        const radialSegments = 16;
+        const p = 2; // Number of winds around the axis
+        const q = 3; // Number of winds through the hole
+        const radius = 80;
+        const tube = 20;
+        
+        const vertices = [];
+        
+        for (let i = 0; i <= segments; i++) {
+            const u = i / segments * p * Math.PI * 2;
+            
+            // Calculate center of the tube at u
+            const cu = Math.cos(u);
+            const su = Math.sin(u);
+            const quOverP = q / p * u;
+            const cs = Math.cos(quOverP);
+            const r = radius * (1 + 0.4 * cs);
+            
+            const px = r * cu;
+            const py = r * su;
+            const pz = 40 * Math.sin(quOverP);
+            
+            // Calculate derivative (tangent)
+            const dx = radius * ( -su * (1 + 0.4 * cs) - 0.4 * (q/p) * Math.sin(quOverP) * cu );
+            const dy = radius * ( cu * (1 + 0.4 * cs) - 0.4 * (q/p) * Math.sin(quOverP) * su );
+            const dz = 40 * (q/p) * Math.cos(quOverP);
+            
+            // Normalize tangent
+            const len = Math.sqrt(dx*dx + dy*dy + dz*dz);
+            const T = { x: dx/len, y: dy/len, z: dz/len };
+            
+            // Basic Normal (T cross (0,0,1))
+            let N = { x: T.y, y: -T.x, z: 0 };
+            const nLen = Math.sqrt(N.x*N.x + N.y*N.y);
+            if(nLen === 0) {
+                 N = { x: 0, y: 1, z: 0 };
+            } else {
+                 N.x /= nLen; N.y /= nLen;
+            }
+            
+            // Binormal (T cross N)
+            const B = {
+                x: T.y * N.z - T.z * N.y,
+                y: T.z * N.x - T.x * N.z,
+                z: T.x * N.y - T.y * N.x
+            };
+            
+            // Build rings around the tube
+            const ring = [];
+            for (let j = 0; j <= radialSegments; j++) {
+                const v = j / radialSegments * Math.PI * 2;
+                const tv = tube * Math.cos(v);
+                const tb = tube * Math.sin(v);
+                
+                const vx = px + tv * N.x + tb * B.x;
+                const vy = py + tv * N.y + tb * B.y;
+                const vz = pz + tv * N.z + tb * B.z;
+                
+                ring.push({x: vx, y: vy, z: vz, ix: i, iy: j});
+            }
+            vertices.push(ring);
+        }
+
+        function project(x, y, z, cx, cy) {
+            const scale = 400 / (400 + z);
+            return {
+                x: cx + x * scale,
+                y: cy + y * scale,
+                scale: scale,
+                z: z
+            };
+        }
+        
+        function rotate(v, rx, ry, rz) {
+            // Rot Z
+            let x1 = v.x * Math.cos(rz) - v.y * Math.sin(rz);
+            let y1 = v.x * Math.sin(rz) + v.y * Math.cos(rz);
+            let z1 = v.z;
+            // Rot X
+            let y2 = y1 * Math.cos(rx) - z1 * Math.sin(rx);
+            let z2 = y1 * Math.sin(rx) + z1 * Math.cos(rx);
+            // Rot Y
+            let x3 = x1 * Math.cos(ry) + z2 * Math.sin(ry);
+            let z3 = -x1 * Math.sin(ry) + z2 * Math.cos(ry);
+            
+            return {x: x3, y: y2, z: z3};
+        }
+
+        function drawMinimalCore() {
+            // High contrast trace fade
+            ctx.fillStyle = 'rgba(2, 6, 23, 0.4)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             let cx = canvas.width/2;
             let cy = canvas.height/2;
-            time += 0.02;
+            time += 0.015;
+            
+            // Smoothly interpolate current rotation to target rotation
+            mouseX += (targetRotY - mouseX) * 0.1;
+            mouseY += (targetRotX - mouseY) * 0.1;
             
             const isRed = document.body.classList.contains('red-alert');
-            const primaryColor = isRed ? '255, 42, 42' : '8, 247, 254';
-            const secondaryColor = isRed ? '250, 204, 21' : '0, 255, 65';
+            const pColor = isRed ? {r:255, g:42, b:42} : {r:8, g:247, b:254};
             
-            // Draw central energy pulse
-            let pulse = Math.sin(time * 3) * 10 + 20;
-            let grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, pulse * 3);
-            grad.addColorStop(0, `rgba(${primaryColor}, 0.8)`);
-            grad.addColorStop(1, `rgba(${primaryColor}, 0)`);
-            ctx.beginPath();
-            ctx.arc(cx, cy, pulse * 3, 0, Math.PI * 2);
+            // X and Y rotation is entirely user driven now + slight idle pulse
+            let rotX = mouseY + Math.sin(time) * 0.1;
+            let rotY = time * 0.5 + mouseX; 
+            let rotZ = time * 0.2;
+
+            // Draw center point light element
+            let intensity = (Math.sin(time * 5) + 1) * 0.5;
+            let grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 30);
+            grad.addColorStop(0, `rgba(${pColor.r}, ${pColor.g}, ${pColor.b}, ${0.15 + intensity*0.15})`);
+            grad.addColorStop(1, `rgba(${pColor.r}, ${pColor.g}, ${pColor.b}, 0)`);
             ctx.fillStyle = grad;
-            ctx.fill();
+            ctx.beginPath(); ctx.arc(cx, cy, 30, 0, Math.PI*2); ctx.fill();
             
-            // Core shapes
-            ctx.save();
-            ctx.translate(cx, cy);
-            ctx.scale(1, 0.5 + Math.abs(mouseY) * 0.5); 
-            ctx.rotate(time * 0.5 + mouseX);
+            ctx.strokeStyle = `rgba(${pColor.r}, ${pColor.g}, ${pColor.b}, ${0.4 + intensity*0.2})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
             
-            ctx.strokeStyle = `rgba(${primaryColor}, 0.5)`;
-            ctx.lineWidth = 2;
-            for(let i=0; i<3; i++) {
-                ctx.rotate(Math.PI / 3);
-                ctx.beginPath();
-                ctx.rect(-60, -60, 120, 120);
-                ctx.stroke();
-            }
-            ctx.restore();
-            
-            // Draw particles in vortex
-            ctx.save();
-            ctx.translate(cx, cy);
-            ctx.rotate(mouseX * 2); // Rotate entire view based on mouse
-            
-            for (let i = 0; i < particles.length; i++) {
-                let p = particles[i];
-                p.angle += p.speed * (isDragging ? 3 : 1);
-                p.z += Math.sin(time + i) * 2; // wobbly z
-                
-                let currentRadius = p.radius + Math.sin(time * 2 + i) * 10 * Math.abs(mouseY * 5 + 1);
-                
-                // pseudo 3D projection
-                let scale = 200 / (200 + p.z + mouseY * 100);
-                if (scale < 0) scale = 0; // prevent visual bug
-                
-                let x = Math.cos(p.angle) * currentRadius * scale;
-                let y = Math.sin(p.angle) * currentRadius * scale * 0.5; // flatten for fake 3D
-                
-                ctx.beginPath();
-                ctx.fillStyle = `rgba(${i%2===0 ? primaryColor : secondaryColor}, ${scale * 0.8})`;
-                ctx.arc(x, y, p.size * scale, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // connect some particles
-                if(i > 0 && i % 15 === 0) {
-                    let p2 = particles[i-1];
-                    let x2 = Math.cos(p2.angle) * p2.radius * scale;
-                    let y2 = Math.sin(p2.angle) * p2.radius * scale * 0.5;
-                    ctx.beginPath();
-                    ctx.moveTo(x,y);
-                    ctx.lineTo(x2,y2);
-                    ctx.strokeStyle = `rgba(${primaryColor}, ${0.1 * scale})`;
-                    ctx.stroke();
+            for(let i=0; i<vertices.length; i+=2) { 
+                let ring = vertices[i];
+                for(let j=0; j<ring.length; j+=2) { 
+                    let v = ring[j];
+                    
+                    let breath = Math.sin(time*2 + v.ix*0.05) * 2;
+                    let vec = { x: v.x*(1+breath/radius), y: v.y*(1+breath/radius), z: v.z*(1+breath/radius) };
+                    
+                    let rot = rotate(vec, rotX, rotY, rotZ);
+                    
+                    if(rot.z > 20) continue; 
+
+                    let proj = project(rot.x, rot.y, rot.z, cx, cy);
+                    
+                    if(i + 2 < vertices.length) {
+                        let nextV = vertices[i+2][j];
+                        let breath2 = Math.sin(time*2 + nextV.ix*0.05) * 2;
+                        let vec2 = { x: nextV.x*(1+breath2/radius), y: nextV.y*(1+breath2/radius), z: nextV.z*(1+breath2/radius) };
+                        let rot2 = rotate(vec2, rotX, rotY, rotZ);
+                        let proj2 = project(rot2.x, rot2.y, rot2.z, cx, cy);
+                        
+                        ctx.moveTo(proj.x, proj.y);
+                        ctx.lineTo(proj2.x, proj2.y);
+                    }
+                    
+                    if(j + 2 < ring.length) {
+                        let nextJ = ring[j+2];
+                        let breath3 = Math.sin(time*2 + v.ix*0.05) * 2;
+                        let vec3 = { x: nextJ.x*(1+breath3/radius), y: nextJ.y*(1+breath3/radius), z: nextJ.z*(1+breath3/radius) };
+                        let rot3 = rotate(vec3, rotX, rotY, rotZ);
+                        let proj3 = project(rot3.x, rot3.y, rot3.z, cx, cy);
+                        
+                        ctx.moveTo(proj.x, proj.y);
+                        ctx.lineTo(proj3.x, proj3.y);
+                    }
                 }
             }
-            ctx.restore();
+            ctx.stroke();
             
-            requestAnimationFrame(drawEpicCore);
+            // Draw floating tech text orbiting the core
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            const ringsData = [
+                { texts: ['BLOCKCHAIN', 'RUST', 'PYTHON', 'SOLIDITY', 'HEDERA', 'EVM'], radius: 155, speed: 0.8, yOffset: 40 },
+                { texts: ['SMART CONTRACTS', 'WEB3', 'CRYPTOGRAPHY', 'BACKEND', 'TYPESCRIPT'], radius: 185, speed: -0.6, yOffset: -40 }
+            ];
+
+            ringsData.forEach((ring) => {
+                let len = ring.texts.length;
+                for(let k=0; k<len; k++) {
+                     let ang = time * ring.speed + (Math.PI*2/len) * k;
+                     let orbitR = ring.radius + Math.sin(time*2 + k)*5;
+                     
+                     let px = Math.cos(ang)*orbitR;
+                     let pz = Math.sin(ang)*orbitR;
+                     let py = ring.yOffset + Math.sin(time*1.5 + k)*15;
+                     
+                     // Orbit is slightly influenced by the core's rotation
+                     let rotNode = rotate({x:px, y:py, z:pz}, rotX * 0.4, rotY, 0);
+                     let pd = project(rotNode.x, rotNode.y, rotNode.z, cx, cy);
+                     
+                     // Calculate opacity based on depth (z) to fade items behind the core
+                     let depthAlpha = rotNode.z < 0 ? 0.9 : Math.max(0.1, 0.9 - (rotNode.z / 100));
+                     let opacity = pd.scale * depthAlpha;
+                     
+                     // Use primary color for main text, small subtle glowing effect
+                     ctx.fillStyle = `rgba(${pColor.r}, ${pColor.g}, ${pColor.b}, ${opacity})`;
+                     
+                     let fontSize = Math.max(1, 11 * pd.scale);
+                     ctx.font = `600 ${fontSize}px "Space Mono", monospace, sans-serif`;
+                     ctx.fillText(ring.texts[k], pd.x, pd.y);
+                }
+            });
+
+            requestAnimationFrame(drawMinimalCore);
         }
-        drawEpicCore();
+        drawMinimalCore();
     }
 
     // --- 8. INTERACTIVE WARP SPEED BACKGROUND ---
