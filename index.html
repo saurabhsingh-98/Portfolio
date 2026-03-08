@@ -783,10 +783,10 @@ body {
                 </a>
 
                 <!-- Project 03 -->
-                <a href="#" target="_blank" class="mission-card mb-4" style="display:flex; gap:1.5rem; align-items:flex-start; border-color: rgba(8,247,254,0.3);" data-magnetic>
-                    <div style="font-family: var(--font-mono); font-size: 2rem; color: rgba(8,247,254,0.2); flex-shrink:0; line-height:1;">03</div>
+                <a href="#" target="_blank" class="mission-card mb-4" style="display:flex; gap:1.5rem; align-items:flex-start; border-color: rgba(250,204,21,0.3);" data-magnetic>
+                    <div style="font-family: var(--font-mono); font-size: 2rem; color: rgba(250,204,21,0.2); flex-shrink:0; line-height:1;">03</div>
                     <div style="flex:1;">
-                        <div class="mission-status blink" style="color: var(--cyber-cyan);">LIVE_NODE</div>
+                        <div class="mission-status" style="color: #facc15;">UNDER_DEV</div>
                         <h3>ZK-Anon Identity Matrix</h3>
                         <p>Zero-knowledge proof authentication system utilizing zk-SNARKs and Circom to verify credentials on-chain without exposing underlying private data.</p>
                         <div class="tech-tags" style="margin-top:0.8rem;">
@@ -803,10 +803,10 @@ body {
                 </a>
 
                 <!-- Project 04 -->
-                <a href="#" target="_blank" class="mission-card mb-4" style="display:flex; gap:1.5rem; align-items:flex-start; border-color: rgba(8,247,254,0.3);" data-magnetic>
-                    <div style="font-family: var(--font-mono); font-size: 2rem; color: rgba(8,247,254,0.2); flex-shrink:0; line-height:1;">04</div>
+                <a href="#" target="_blank" class="mission-card mb-4" style="display:flex; gap:1.5rem; align-items:flex-start; border-color: rgba(250,204,21,0.3);" data-magnetic>
+                    <div style="font-family: var(--font-mono); font-size: 2rem; color: rgba(250,204,21,0.2); flex-shrink:0; line-height:1;">04</div>
                     <div style="flex:1;">
-                        <div class="mission-status blink" style="color: var(--cyber-cyan);">LIVE_NODE</div>
+                        <div class="mission-status" style="color: #facc15;">UNDER_DEV</div>
                         <h3>Rusty-Rollup Sequencer</h3>
                         <p>High-throughput optimistic rollup sequencer written in Rust. Features a custom Merkle state transition engine and a deterministic P2P gossip protocol.</p>
                         <div class="tech-tags" style="margin-top:0.8rem;">
@@ -817,6 +817,26 @@ body {
                         </div>
                         <div class="mission-footer" style="margin-top:0.8rem;">
                             <span class="tech-stack">[ Systems / Scaling ]</span>
+                            <span class="highlight">SECURE_LINK ↗</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 05 -->
+                <a href="https://github.com/saurabhsingh-98/defi-app" target="_blank" class="mission-card mb-4" style="display:flex; gap:1.5rem; align-items:flex-start; border-color: rgba(8,247,254,0.3);" data-magnetic>
+                    <div style="font-family: var(--font-mono); font-size: 2rem; color: rgba(8,247,254,0.2); flex-shrink:0; line-height:1;">05</div>
+                    <div style="flex:1;">
+                        <div class="mission-status blink" style="color: var(--cyber-cyan);">LIVE_NODE</div>
+                        <h3>NexaDeFi Dashboard</h3>
+                        <p>A premium full-stack Web3 decentralized finance frontend featuring a token DEX swap interface, staking hub, and deep MetaMask integration, built with Next.js.</p>
+                        <div class="tech-tags" style="margin-top:0.8rem;">
+                            <span class="tag alert">Next.js</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Tailwind</span>
+                            <span class="tag alert">Ethers.js</span>
+                        </div>
+                        <div class="mission-footer" style="margin-top:0.8rem;">
+                            <span class="tech-stack">[ Web3 / dApp Frontend ]</span>
                             <span class="highlight">SECURE_LINK ↗</span>
                         </div>
                     </div>
@@ -1648,7 +1668,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (cmd === 'whoami') {
                     termOutput.textContent += `SAURABH KUMAR SINGH\nBlockchain Developer currently stationed in IND.\nSpecialties: EVM, Hedera, Solidity, Security.\nType 'projects' to see ongoing work.\n`;
                 } else if (cmd === 'projects') {
-                    termOutput.textContent += `[ACTIVE] Crypto Portfolio Tracker (Python)\n[ACTIVE] Hedera Visualizer (JS/WebSocket)\n[ACTIVE] ZK-Anon Identity Matrix (Rust/Circom)\n[ACTIVE] Rusty-Rollup Sequencer (Rust/Tokio)\n\nUse the GUI [MISSION_ARCHIVES] for secure links.\n`;
+                    termOutput.textContent += `[LIVE] Crypto Portfolio Tracker (Python)\n[LIVE] Hedera Visualizer (JS/WebSocket)\n[LIVE] NexaDeFi Dashboard (Next.js/Ethers)\n[DEV] ZK-Anon Identity Matrix (Rust/Circom)\n[DEV] Rusty-Rollup Sequencer (Rust/Tokio)\n\nUse the GUI [MISSION_ARCHIVES] for secure links.\n`;
                 } else if (cmd === 'contact') {
                     termOutput.textContent += `Email: rsaurabhsingh84@gmail.com\nLinkedIn: linkedin.com/in/saurabh-singh-381a65383\nGitHub: github.com/saurabhsingh-98\n`;
                 } else if (cmd === 'hack') {
